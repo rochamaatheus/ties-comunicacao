@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ties Comunicação | Damos valor ao que merece ser dito.</title>
+
+<!-- ============================================================================
+     LAYOUT 2 — "OMNICOM EDITORIAL" — v2 (cópia autoral da arquitetura de omc.com)
+
+     Esta versão NÃO é "inspirada no espírito" da referência: é uma reconstrução
+     da arquitetura real de `inspiracao/omnicom.png`, medida seção a seção, com
+     a marca e o conteúdo da Ties por cima. O que foi copiado da referência:
+
+     · HEADER  — sem logo, só a navegação alinhada à direita (6 links de texto,
+                 sem CTA, sem borda, sem fundo). O wordmark NÃO fica no header:
+                 ele é a primeira linha do bloco do hero. A barra com o wordmark
+                 só aparece depois que o hero sai da tela (comportamento real
+                 do site de referência).
+     · HERO    — margem esquerda de 12,34% da largura (237/1920), wordmark
+                 acima do H1, H1 gigante em sans leve com PALAVRAS EM SERIFA
+                 ITÁLICA no meio da frase, e abaixo um sub-bloco de 2 colunas
+                 (frase curta em bold + filete horizontal | parágrafo de apoio).
+                 SEM botão no hero — a referência não tem nenhum.
+                 À direita, o motivo gráfico da referência: um círculo cujo
+                 quadrante superior-esquerdo é uma sequência de PONTOS crescentes
+                 e cuja parte inferior é um ARCO SÓLIDO GROSSO, sangrando para
+                 fora da borda direita. (Na v1 isso virou um "diagrama do
+                 monograma" inventado — erro corrigido aqui.)
+     · CABEÇALHO DE SEÇÃO — o componente que se repete 3x na referência:
+                 [pílula-eyebrow com bolinha + H2 bold] à esquerda  |
+                 [parágrafo em serifa itálica + pílula de CTA com badge
+                 CIRCULAR DESTACADO ao lado] à direita, iniciando a 59,5% da
+                 largura da página.
+     · TRILHO DE CARDS — cards de 350x400px, raio 18px, gap 26px, com o
+                 primeiro card na cor da marca e os demais escuros
+                 (título em cima / ícone de linha dentro de círculo no meio /
+                 legenda em serifa itálica embaixo), transbordando para fora da
+                 borda direita + setas circulares e barra de progresso embaixo.
+     · BANDA FOTOGRÁFICA — a referência tem UMA única foto de pessoa na página:
+                 full-bleed, ambiente (não retrato de estúdio), texto sobreposto
+                 no topo. Replicada com a foto 11 (mesa/ambiente, paisagem).
+     · BLOCO DE NOTÍCIAS — container ESTREITO (1200/1920 = 62,5%, mais estreito
+                 que o resto da página), H2 à esquerda + pílula "ver todos" à
+                 direita, 3 cards brancos SEM IMAGEM: título no topo, vão vazio,
+                 data + badge circular de seta no rodapé do card.
+     · FOOTER  — mesmo container estreito, frase-assinatura grande misturando
+                 bold + serifa itálica à esquerda, colunas de links à direita
+                 (título + rótulo em bold + valor em light), muito espaço vazio
+                 embaixo e uma barra fina de copyright/legal.
+
+     Paleta FECHADA (materiais-marca/ARQUIVO COREL DRAW.cdr → color/docPalette.xml):
+       navy #5C5C59 · taupe #A8A8A4 · off-white #EFEFED. Sem acento saturado —
+       onde a referência usa laranja/azul, aqui entra taupe e contraste de VALOR.
+============================================================================= -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy:      '#5C5C59',
+        'navy-900':'#4A4A47',
+        'navy-700':'#6B6B67',
+        taupe:     '#A8A8A4',
+        'taupe-2': '#BFBFBB',
+        cream:     '#EFEFED',
+        'cream-2': '#E4E4E1',
+        'cream-3': '#D8D8D5'
+      },
+      fontFamily: {
+        sans: ['Arial','Helvetica','sans-serif'],
+        serif: ['Arial','Helvetica','sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  /* RASCUNHO: fotos sem tratamento, so preto e branco */
+  img { filter: grayscale(1); }
+
+  html { scroll-behavior: smooth; }
+  body { background:#EFEFED; color:#5C5C59; -webkit-font-smoothing: antialiased; }
+
+  /* ---- GRIDS -------------------------------------------------------------
+     shell  : margem de 12,34% (237px em 1920) — usado em quase toda a página
+     inset  : container estreito de 62,5% (1200px em 1920) — só no bloco de
+              posts e no footer, exatamente como na referência              */
+  .shell  { padding-inline: clamp(1.25rem, 12.34vw, 240px); }
+  .shell > .inner  { max-width: 1446px; margin-inline: auto; }
+  .inset  { padding-inline: clamp(1.25rem, 18.75vw, 360px); }
+  .inset > .inner  { max-width: 1200px; margin-inline: auto; }
+  @media (max-width: 900px) {
+    .shell, .inset { padding-inline: 1.25rem; }
+  }
+
+  /* ---- TIPOGRAFIA --------------------------------------------------------
+     escala derivada da referência em 1920: H1 94px / H2 48px / itálica 24px */
+  .t-h1      { font-size:30px; line-height: 1.16; letter-spacing:-0.025em; font-weight:300; }
+  .t-h1-sm   { font-size:30px; line-height: 1.16; letter-spacing:-0.025em; font-weight:300; }
+  .t-mark    { font-size:30px; line-height: 1;    letter-spacing:-0.045em; font-weight:800; }
+  .t-h2      { font-size:30px; line-height: 1.12; letter-spacing:-0.022em; font-weight:700; }
+  .t-h3      { font-size:30px;  line-height: 1.15; letter-spacing:-0.02em;  font-weight:700; }
+  .t-lede    { font-size:21px; line-height: 1.5; }
+  .t-body    { font-size:16px; line-height: 1.62; font-weight:300; }
+  .t-eyebrow { font-size:13px; letter-spacing:.02em; font-weight:600; }
+  .ital      { font-family: Arial, Helvetica, sans-serif; font-style:italic; font-weight:300; letter-spacing:0; }
+
+  /* filete do sub-bloco do hero (245px x 1px na referência) */
+  .rule-hero { width: 245px; max-width: 60%; height:1px; background:#5C5C59; opacity:.75; }
+
+  /* ---- PÍLULA-EYEBROW (componente repetido 3x na referência) ------------- */
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:9px;
+    padding: 7px 15px 7px 12px; border-radius:999px;
+    background: rgba(22,55,76,.07);
+  }
+  .eyebrow.on-dark { background: rgba(238,237,233,.14); }
+  .eyebrow i { width:5px; height:5px; border-radius:999px; background:#A8A8A4; display:block; }
+
+  /* ---- CTA: pílula + badge circular DESTACADO ao lado -------------------- */
+  .cta { display:inline-flex; align-items:center; gap:4px; }
+  .cta .pill {
+    border-radius:999px; padding:15px 26px;
+    font-size:13px; font-weight:600; line-height:1.2;
+    transition: background .25s, color .25s;
+  }
+  .cta .badge {
+    width:48px; height:48px; border-radius:999px;
+    display:grid; place-items:center; flex:none;
+    transition: transform .25s;
+  }
+  .cta:hover .badge { transform: translate(3px,-3px); }
+
+  /* ---- TRILHO DE CARDS (transborda pela direita, como na referência) ----- */
+  .rail {
+    display:flex; gap:26px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; -ms-overflow-style:none;
+    padding-block: 4px;
+  }
+  .rail::-webkit-scrollbar { display:none; }
+  .rail > * { scroll-snap-align:start; flex:none; }
+  .card-rail { width:350px; height:400px; border-radius:18px; }
+  @media (max-width: 640px) { .card-rail { width: 78vw; height: 380px; } }
+
+  /* ---- ORBITA DE CÍRCULOS (coluna esquerda do bloco "capabilities") ------ */
+  .orbit {
+    position:relative; height:760px; width:100%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+  }
+  .orbit-track { position:absolute; inset:0; animation: orbit-drift 26s linear infinite; }
+  @keyframes orbit-drift { 0% { transform: translateY(0); } 100% { transform: translateY(-206px); } }
+  .orbit-ring {
+    position:absolute; width:300px; height:300px; border-radius:999px;
+    border:1px solid rgba(169,155,141,.55);
+  }
+  @media (max-width: 1023px) { .orbit { height:420px; } .orbit-ring { width:220px; height:220px; } }
+
+  /* ---- ACORDEÃO DO FAQ --------------------------------------------------- */
+  details.qa { border-top:1px solid rgba(22,55,76,.18); }
+  details.qa:last-of-type { border-bottom:1px solid rgba(22,55,76,.18); }
+  details.qa > summary { list-style:none; cursor:pointer; }
+  details.qa > summary::-webkit-details-marker { display:none; }
+  details.qa .plus { transition: transform .3s; }
+  details.qa[open] .plus { transform: rotate(45deg); }
+
+  /* ---- FORMULÁRIO -------------------------------------------------------- */
+  .fld {
+    width:100%; background:transparent; color:#EFEFED;
+    border:0; border-bottom:1px solid rgba(238,237,233,.28);
+    padding:12px 0; font-size:13px; font-weight:300; outline:none;
+    transition: border-color .25s;
+  }
+  .fld::placeholder { color: rgba(238,237,233,.42); }
+  .fld:focus { border-color:#A8A8A4; }
+  select.fld option { color:#5C5C59; }
+
+  /* ---- BARRA STICKY (só aparece depois do hero) -------------------------- */
+  #bar {
+    position:fixed; inset:0 0 auto 0; z-index:60;
+    background:rgba(238,237,233,.92); backdrop-filter:blur(10px);
+    transform:translateY(-100%); transition:transform .35s ease;
+  }
+  #bar.on { transform:translateY(0); }
+
+  .lift { transition: transform .3s ease, box-shadow .3s ease; }
+  .lift:hover { transform: translateY(-4px); }
+</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<!-- ============================================================================
+     1. HEADER
+     Referência: NÃO tem logo. Só 6 links de texto alinhados à direita, ~90px de
+     altura, fundo transparente, sem borda e sem CTA. O wordmark da marca vive
+     DENTRO do hero. A barra com wordmark só aparece no scroll.
+============================================================================= -->
+<header class="absolute top-0 inset-x-0 z-40 shell">
+  <div class="inner flex items-center justify-end h-[clamp(64px,4.7vw,90px)]">
+    <nav class="hidden md:flex items-center gap-[clamp(24px,3.3vw,64px)] text-[13px] font-medium text-navy">
+      <a href="#sobre"         class="hover:text-taupe transition-colors">Sobre</a>
+      <a href="#servicos"      class="hover:text-taupe transition-colors">Serviços</a>
+      <a href="#como-funciona" class="hover:text-taupe transition-colors">Como funciona</a>
+      <a href="#blog"          class="hover:text-taupe transition-colors">Blog</a>
+      <a href="#faq"           class="hover:text-taupe transition-colors">FAQ</a>
+      <a href="#contato"       class="hover:text-taupe transition-colors">Contato</a>
+    </nav>
+    <button class="md:hidden p-2 -mr-2 text-navy" aria-label="Abrir menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- barra condensada: comportamento real do site de referência (wordmark só
+     aparece quando o hero sai da tela) -->
+<div id="bar" class="shell">
+  <div class="inner flex items-center justify-between h-[62px]">
+    <a href="#topo" class="flex items-baseline gap-2.5">
+      <span class="text-[21px] font-extrabold tracking-[-0.045em] text-navy leading-none">ties</span>
+      <span class="text-[11px] font-light tracking-[0.34em] text-taupe uppercase leading-none">Comunicação</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-[clamp(18px,2.2vw,40px)] text-[13px] font-medium text-navy">
+      <a href="#sobre"         class="hover:text-taupe transition-colors">Sobre</a>
+      <a href="#servicos"      class="hover:text-taupe transition-colors">Serviços</a>
+      <a href="#como-funciona" class="hover:text-taupe transition-colors">Como funciona</a>
+      <a href="#blog"          class="hover:text-taupe transition-colors">Blog</a>
+      <a href="#faq"           class="hover:text-taupe transition-colors">FAQ</a>
+      <a href="#contato"       class="hover:text-taupe transition-colors">Contato</a>
+    </nav>
+  </div>
+</div>
+
+
+<!-- ============================================================================
+     2. HERO
+     Proporção da referência: bloco de ~1000px de altura em 1920 de largura
+     (≈ uma dobra inteira). Texto começa a 12,34% da esquerda e ocupa ~55% da
+     largura; os outros 45% são só o motivo gráfico sangrando pela direita.
+============================================================================= -->
+<section id="topo" class="relative overflow-hidden bg-cream">
+
+  <!-- MOTIVO GRÁFICO DO HERO — não é um "diagrama do monograma": é exatamente a
+       mecânica da referência. Um mesmo círculo com (a) o quadrante superior-
+       esquerdo resolvido como pontos de tamanho crescente e (b) a parte de
+       baixo como um arco sólido muito grosso, cortado pela borda da tela. -->
+  <div class="pointer-events-none absolute select-none
+              -top-[8%] -right-[34vw] w-[78vw] opacity-50
+              sm:top-[3%] sm:-right-[23vw] sm:w-[62vw] sm:opacity-90
+              max-w-[1180px] aspect-square lg:opacity-100" aria-hidden="true">
+    <svg viewBox="0 0 1000 1000" class="w-full h-full overflow-visible">
+      <!-- arco sólido grosso: de 8h30 até 4h passando por 6h -->
+      <circle cx="500" cy="500" r="400" fill="none" stroke="#A8A8A4" stroke-width="54"
+              stroke-linecap="round" stroke-dasharray="942.6 2513.3" stroke-dashoffset="-209.4"/>
+      <!-- sequência de pontos crescentes ao longo do mesmo círculo -->
+      <g fill="#A8A8A4">
+        <circle cx="106.1" cy="430.6" r="6"/>
+        <circle cx="137.5" cy="330.9" r="7.5"/>
+        <circle cx="182.6" cy="256.5" r="9"/>
+        <circle cx="242.9" cy="193.6" r="10.5"/>
+        <circle cx="315.3" cy="145.2" r="12"/>
+        <circle cx="396.5" cy="113.6" r="13.5"/>
+        <circle cx="482.6" cy="100.4" r="15"/>
+        <circle cx="569.4" cy="105.9" r="16.5"/>
+        <circle cx="653.1" cy="130.4" r="18"/>
+        <circle cx="729.4" cy="172.3" r="19.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="relative shell">
+    <div class="inner min-h-[min(1000px,94vh)] flex flex-col justify-center
+                pt-[clamp(120px,11vw,210px)] pb-[clamp(80px,8vw,150px)]">
+
+      <!-- linha do wordmark, imediatamente acima do H1 (posição da referência) -->
+      <div class="flex items-baseline gap-4 mb-[clamp(6px,0.8vw,14px)]">
+        <span class="t-mark text-navy">ties</span>
+        <span class="text-[13px] font-light uppercase tracking-[0.42em] text-navy/45">Comunicação</span>
+      </div>
+
+      <!-- H1: sans leve com as palavras-chave em SERIFA ITÁLICA no meio da frase
+           (mecânica literal de "marketing"/"sales" na referência) -->
+      <h1 class="t-h1 text-navy max-w-[min(1200px,82%)]">
+        Damos valor ao que <span class="ital font-normal">merece</span><br class="hidden sm:block">
+        ser <span class="ital font-normal">dito</span>.
+      </h1>
+
+      <!-- sub-bloco de 2 colunas da referência:
+           coluna estreita (bold curto + filete) | coluna larga (parágrafo) -->
+      <div class="mt-[clamp(38px,4.2vw,80px)] grid gap-8 sm:gap-[clamp(40px,4.3vw,82px)]
+                  sm:grid-cols-[minmax(0,250px)_minmax(0,510px)]">
+        <div>
+          <p class="text-[16px] font-bold leading-[1.35] text-navy">
+            Reputação não se anuncia.<br>Se conquista.
+          </p>
+          <div class="rule-hero mt-[clamp(24px,2.6vw,50px)]"></div>
+        </div>
+        <p class="text-[16px] font-light leading-[1.62] text-navy/75">
+          Consultoria de comunicação empresarial e assessoria de imprensa para empresas e
+          executivos que precisam ser reconhecidos como referência pelo que a imprensa
+          registra a respeito deles, não pelo que eles próprios anunciam.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     3. POR QUE A IMPRENSA IMPORTA
+     Slot arquitetural da referência: "A competitive edge across every dimension".
+     Coluna esquerda = pilha de círculos finos sobrepostos com palavras em serifa
+     itálica, com máscara de fade em cima e embaixo e um acento de arco.
+     Coluna direita, começando a ~59,5% da largura = pílula-eyebrow + H2 + texto
+     em serifa itálica + CTA com badge circular destacado.
+============================================================================= -->
+<section class="relative bg-cream overflow-hidden">
+  <div class="shell py-[clamp(70px,6vw,110px)]">
+    <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-10 lg:gap-16 items-center">
+
+      <!-- ORBITA ------------------------------------------------------------ -->
+      <div class="orbit hidden lg:block" aria-hidden="true">
+        <div class="orbit-track">
+          <div class="orbit-ring" style="left:6%;  top:-172px;"></div>
+          <div class="orbit-ring" style="left:16%; top:34px;"></div>
+          <div class="orbit-ring" style="left:9%;  top:240px;"></div>
+          <div class="orbit-ring" style="left:19%; top:446px;"></div>
+          <div class="orbit-ring" style="left:4%;  top:652px;"></div>
+
+          <span class="ital absolute text-[30px] text-navy/25" style="left:24%; top:-32px;">Credibilidade</span>
+          <span class="ital absolute text-[30px] text-navy/35" style="left:31%; top:174px;">Reputação</span>
+          <span class="ital absolute text-[30px] text-navy"     style="left:24%; top:380px;">Autoridade</span>
+          <span class="ital absolute text-[30px] text-navy/35" style="left:34%; top:586px;">Influência</span>
+          <span class="ital absolute text-[30px] text-navy/25" style="left:19%; top:792px;">Imprensa</span>
+
+          <!-- acento, exatamente como na referência: concêntrico com o círculo do
+               MEIO — corrida de pontos crescentes subindo pela esquerda e um arco
+               sólido grosso ("sorriso") na base do mesmo círculo -->
+          <svg viewBox="0 0 1000 1000"
+               class="absolute w-[300px] h-[300px] overflow-visible pointer-events-none"
+               style="left:9%; top:240px;">
+            <circle cx="500" cy="500" r="490" fill="none" stroke="#A8A8A4" stroke-width="110"
+                    stroke-linecap="round" stroke-dasharray="380 3078.8" stroke-dashoffset="-580"/>
+            <g fill="#A8A8A4">
+              <circle cx="17"  cy="585" r="20"/>
+              <circle cx="12"  cy="457" r="26"/>
+              <circle cx="40"  cy="332" r="32"/>
+              <circle cx="99"  cy="219" r="38"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA — componente de cabeçalho de seção da referência ---- -->
+      <div>
+        <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Por que a imprensa importa</span></span>
+
+        <h2 class="t-h2 text-navy mt-[clamp(22px,2vw,38px)]">
+          Não é você falando<br>de você. É o mercado<br>falando de você.
+        </h2>
+
+        <!-- Texto institucional fornecido pela cliente — reproduzido LITERALMENTE.
+             Ocupa o slot do parágrafo em serifa itálica da referência. -->
+        <p class="ital t-lede text-navy/70 mt-[clamp(20px,1.7vw,32px)] max-w-[52ch]">
+          Quando uma empresa conquista um espaço na imprensa, ela não ganha apenas
+          visibilidade. Ganha credibilidade, fortalece sua reputação e passa a ocupar um
+          lugar de referência no mercado. Esse movimento também amplia a oportunidade de
+          seus executivos, que passam a ser percebidos como referência e procurados como
+          fontes qualificadas para entrevistas e análises.
+        </p>
+
+        <a href="#como-funciona" class="cta mt-[clamp(26px,2.4vw,44px)]">
+          <span class="pill bg-navy text-cream hover:bg-navy-700">Como isso funciona</span>
+          <span class="badge bg-navy text-cream">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     4. SOBRE A TIES / CREDENCIAL JORNALÍSTICA
+     Slot da referência: a banda "A record of sustained growth" — a ÚNICA foto de
+     pessoa da página inteira, full-bleed, ambiente (não retrato de estúdio), com
+     o cabeçalho de seção sobreposto no topo e um degradê escuro para leitura.
+     Aqui: foto 11 (a única em formato paisagem e a única com cena de trabalho).
+     Regra da cliente respeitada: nenhum retrato no hero.
+============================================================================= -->
+<section id="sobre" class="relative overflow-hidden">
+  <div class="relative min-h-[min(950px,88vh)] flex flex-col justify-between
+              pt-[clamp(60px,6vw,110px)] pb-[clamp(30px,3vw,50px)]">
+
+    <!-- foto full-bleed -->
+    <img src="../assets/fotos/foto-11.jpg"
+         alt="Fernanda Thiesen Furtado, fundadora da Ties Comunicação, em seu escritório"
+         class="absolute inset-0 w-full h-full object-cover object-center">
+    <!-- degradê de leitura (a referência escurece o lado do texto, não a foto toda) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/45"></div>
+
+    <!-- SÓ a corrida de pontos sobre a foto: na referência a banda fotográfica
+         recebe apenas o pontilhado (o arco sólido fica na seção seguinte) -->
+    <svg viewBox="0 0 1000 1000" class="pointer-events-none absolute left-[1%] bottom-[-14%] w-[38%] opacity-85" aria-hidden="true">
+      <g fill="#A8A8A4">
+        <circle cx="106" cy="431" r="7"/><circle cx="138" cy="331" r="9"/>
+        <circle cx="183" cy="257" r="11"/><circle cx="243" cy="194" r="13"/>
+        <circle cx="315" cy="145" r="15"/><circle cx="397" cy="114" r="17"/>
+        <circle cx="483" cy="100" r="19"/><circle cx="569" cy="106" r="21"/>
+        <circle cx="653" cy="130" r="23"/><circle cx="729" cy="172" r="25"/>
+      </g>
+    </svg>
+
+    <!-- cabeçalho de seção sobreposto — mesma geometria do bloco anterior -->
+    <div class="relative shell">
+      <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 lg:gap-16">
+        <div>
+          <span class="eyebrow on-dark"><i></i><span class="t-eyebrow text-cream">Quem está por trás</span></span>
+          <h2 class="t-h2 text-cream mt-[clamp(18px,1.6vw,30px)]">
+            Vinte e cinco anos de<br>redação por trás de<br>cada pauta
+          </h2>
+        </div>
+        <div>
+          <p class="ital t-lede text-cream/85 max-w-[46ch]">
+            A Ties Comunicação foi fundada em 2019 por Fernanda Thiesen Furtado, jornalista com
+            25 anos de atuação em comunicação empresarial, relações públicas e assessoria de imprensa, e com a leitura, vinda da redação, do que de fato vira pauta.
+          </p>
+          <a href="#servicos" class="cta mt-[clamp(24px,2.2vw,40px)]">
+            <span class="pill bg-cream text-navy hover:bg-taupe">Conhecer a Ties</span>
+            <span class="badge bg-cream text-navy">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- faixa de credenciais no rodapé da banda -->
+    <div class="relative shell mt-[clamp(50px,6vw,110px)]">
+      <div class="inner grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 border-t border-cream/20 pt-7">
+        <div>
+          <p class="text-[30px] font-extrabold leading-none text-cream">25</p>
+          <p class="text-[13px] font-light leading-snug text-cream/60 mt-2">anos de experiência em comunicação empresarial</p>
+        </div>
+        <div>
+          <p class="text-[30px] font-extrabold leading-none text-cream">2019</p>
+          <p class="text-[13px] font-light leading-snug text-cream/60 mt-2">fundação da Ties Comunicação</p>
+        </div>
+        <div>
+          <p class="text-[30px] font-extrabold leading-none text-cream">02</p>
+          <p class="text-[13px] font-light leading-snug text-cream/60 mt-2">graduações em Jornalismo e Letras</p>
+        </div>
+        <div>
+          <p class="text-[30px] font-extrabold leading-none text-cream">03</p>
+          <p class="text-[13px] font-light leading-snug text-cream/60 mt-2">pós-graduações em Marketing, Comunicação Empresarial e Relações Públicas</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     5. SERVIÇOS
+     Slot da referência: a banda "Omni". Fundo fotográfico DESFOCADO (aqui, a
+     foto 12 com blur pesado e véu off-white, para dar o mesmo fundo neutro
+     e quente da referência), cabeçalho de seção em 2 colunas e, embaixo, o
+     TRILHO de cards 350x400 que transborda pela direita: o primeiro card é o
+     card de marca (na referência, o card azul "OMNI"), os demais são escuros
+     com título em cima, ícone de linha dentro de um círculo no meio e legenda
+     em serifa itálica embaixo.
+============================================================================= -->
+<section id="servicos" class="relative overflow-hidden">
+  <!-- fundo desfocado -->
+  <div class="absolute inset-0">
+    <img src="../assets/fotos/foto-12.jpg" alt=""
+         class="w-full h-full object-cover blur-[64px] scale-125 opacity-95">
+    <div class="absolute inset-0 bg-gradient-to-b from-cream via-cream-2/55 to-cream"></div>
+  </div>
+
+  <div class="relative py-[clamp(70px,6.5vw,120px)]">
+    <div class="shell">
+      <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 lg:gap-16">
+        <div>
+          <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Serviços</span></span>
+          <h2 class="t-h2 text-navy mt-[clamp(18px,1.6vw,30px)]">
+            O que a Ties entrega,<br>do diagnóstico à<br>publicação
+          </h2>
+        </div>
+        <div>
+          <p class="ital t-lede text-navy/70 max-w-[46ch]">
+            Seis frentes que funcionam melhor combinadas: o que a imprensa publica, o que a
+            empresa produz e o que a liderança assina fazem parte da mesma reputação.
+          </p>
+          <a href="#contato" class="cta mt-[clamp(22px,2vw,38px)]">
+            <span class="pill bg-navy text-cream hover:bg-navy-700">Ver todos os serviços</span>
+            <span class="badge bg-navy text-cream">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRILHO: começa na margem do shell e transborda pela direita (sem
+         container à direita), exatamente como na referência -->
+    <div class="mt-[clamp(44px,4.5vw,86px)] pl-[clamp(1.25rem,12.34vw,240px)]">
+      <div class="rail" id="rail-servicos">
+
+        <!-- card de marca (equivalente ao card "OMNI" da referência) -->
+        <div class="card-rail bg-navy text-cream grid place-items-center relative overflow-hidden">
+          <div class="text-center px-6">
+            <div class="flex items-baseline justify-center gap-2.5">
+              <span class="text-[30px] font-extrabold tracking-[-0.045em] leading-none">ties</span>
+              <span class="text-[11px] font-light uppercase tracking-[0.4em] text-cream/55 leading-none">Comunicação</span>
+            </div>
+            <p class="ital text-[16px] text-cream/60 mt-4">Damos valor ao que merece ser dito.</p>
+          </div>
+          <svg viewBox="0 0 1000 1000" class="absolute -bottom-[42%] -right-[34%] w-[92%] opacity-30" aria-hidden="true">
+            <circle cx="500" cy="500" r="400" fill="none" stroke="#A8A8A4" stroke-width="80" stroke-linecap="round" stroke-dasharray="640 2513.3" stroke-dashoffset="-1256.6"/>
+          </svg>
+        </div>
+
+        <!-- provisório: aguardando lista oficial da cliente, prevista p/ 24/08/2026 -->
+        <!-- (fonte atual: síntese do briefing + transcrição; substituir rótulos e
+             definições assim que a lista definitiva chegar) -->
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Assessoria de imprensa</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="12" width="30" height="26" rx="2"/><path d="M37 18h4v17a3 3 0 0 1-3 3H10"/><path d="M12 19h12M12 25h20M12 31h20"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">Sua empresa na pauta, não no anúncio, local e nacional.</p>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Produção de conteúdo<br>jornalístico</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8h18l8 8v24a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2Z"/><path d="M30 8v8h8"/><path d="M16 24h16M16 30h16M16 36h10"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">Apuração de verdade, para canais próprios e externos.</p>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Ghostwriting de artigos<br>para C-levels</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M34 6l8 8-22 22-11 3 3-11L34 6Z"/><path d="M29 11l8 8"/><path d="M8 42h32"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">A opinião de quem lidera, escrita como se lê.</p>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Gestão de LinkedIn</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 38V22M18 38V14M28 38V26M38 38V10"/><path d="M6 42h36"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">Autoridade construída em cadência, não em campanha.</p>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Consultoria em comunicação<br>empresarial</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="19" y="6" width="10" height="20" rx="5"/><path d="M13 22a11 11 0 0 0 22 0"/><path d="M24 33v9M17 42h14"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">Posicionamento, reputação e preparo de porta-vozes.</p>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-8 flex flex-col lift">
+          <h3 class="text-[16px] font-bold leading-tight">Consultoria em comunicação<br>interna</h3>
+          <div class="flex-1 grid place-items-center">
+            <span class="w-[140px] h-[140px] rounded-full border border-dashed border-cream/35 grid place-items-center">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#EFEFED" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="24" cy="12" r="5"/><circle cx="11" cy="33" r="5"/><circle cx="37" cy="33" r="5"/>
+                <path d="M24 17v10M24 27l-9 4M24 27l9 4"/>
+              </svg>
+            </span>
+          </div>
+          <p class="ital text-[16px] text-cream/60">Alinhamento entre liderança, cultura e equipe.</p>
+        </article>
+
+        <div class="w-[clamp(1.25rem,12.34vw,240px)] flex-none" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- controles do trilho (setas circulares à esquerda, progresso à direita) -->
+    <div class="shell mt-[clamp(26px,2.6vw,48px)]">
+      <div class="inner flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button data-rail="rail-servicos" data-dir="-1" aria-label="Anterior"
+                  class="w-11 h-11 rounded-full border border-navy/30 text-navy grid place-items-center hover:bg-navy hover:text-cream transition-colors">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button data-rail="rail-servicos" data-dir="1" aria-label="Próximo"
+                  class="w-11 h-11 rounded-full border border-navy/30 text-navy grid place-items-center hover:bg-navy hover:text-cream transition-colors">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="hidden sm:flex items-center gap-2.5">
+          <span class="w-9 h-[2px] bg-navy"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-navy/25"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     6. DIFERENCIAIS
+     Reaproveita a grade dominante da referência (título à esquerda / conteúdo à
+     direita a partir de ~59,5%), com os 5 diferenciais como linhas separadas por
+     filetes de 1px — numeração em taupe, como os elementos finos da referência.
+============================================================================= -->
+<section id="diferenciais" class="bg-cream">
+  <div class="shell py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-10 lg:gap-16">
+
+      <div class="lg:sticky lg:top-24 self-start">
+        <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Por que escolher a Ties</span></span>
+        <h2 class="t-h2 text-navy mt-[clamp(18px,1.6vw,30px)]">
+          O contrário de<br>uma agência que<br>opera em escala
+        </h2>
+        <p class="ital t-lede text-navy/70 mt-[clamp(18px,1.5vw,28px)] max-w-[40ch]">
+          O atendimento é direto com quem executa. Para eventos e coberturas maiores, uma rede de apoio (fotógrafo, designer e outros jornalistas) é acionada sob demanda.
+        </p>
+      </div>
+
+      <ol class="lg:pt-2">
+        <li class="grid grid-cols-[30px_1fr] gap-3 py-[clamp(20px,1.9vw,34px)] border-t border-navy/15 sm:grid-cols-[46px_1fr] sm:gap-4">
+          <span class="text-[13px] font-semibold text-taupe leading-[1.5]">01</span>
+          <div>
+            <h3 class="text-[21px] font-bold leading-snug text-navy">Atendimento 100% personalizado</h3>
+            <p class="t-body text-navy/70 mt-2">Sem camadas de atendimento e sem rodízio de equipe: quem conversa com você é quem escreve, apura e liga para a redação.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[30px_1fr] gap-3 py-[clamp(20px,1.9vw,34px)] border-t border-navy/15 sm:grid-cols-[46px_1fr] sm:gap-4">
+          <span class="text-[13px] font-semibold text-taupe leading-[1.5]">02</span>
+          <div>
+            <h3 class="text-[21px] font-bold leading-snug text-navy">Experiência real com comunicação executiva e imprensa</h3>
+            <p class="t-body text-navy/70 mt-2">Vinte e cinco anos entre grandes empresas, agências e redações. Antes de qualquer proposta, existe repertório de bastidor.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[30px_1fr] gap-3 py-[clamp(20px,1.9vw,34px)] border-t border-navy/15 sm:grid-cols-[46px_1fr] sm:gap-4">
+          <span class="text-[13px] font-semibold text-taupe leading-[1.5]">03</span>
+          <div>
+            <h3 class="text-[21px] font-bold leading-snug text-navy">Conteúdo com linguagem refinada, estratégica e humana</h3>
+            <p class="t-body text-navy/70 mt-2">Texto que um editor aceita e que um leitor termina. Nem release genérico, nem jargão corporativo.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[30px_1fr] gap-3 py-[clamp(20px,1.9vw,34px)] border-t border-navy/15 sm:grid-cols-[46px_1fr] sm:gap-4">
+          <span class="text-[13px] font-semibold text-taupe leading-[1.5]">04</span>
+          <div>
+            <h3 class="text-[21px] font-bold leading-snug text-navy">Visão integrada de LinkedIn, autoridade, reputação e imprensa</h3>
+            <p class="t-body text-navy/70 mt-2">As frentes não são produtos separados: o que sai na imprensa alimenta o LinkedIn, e o que a liderança publica sustenta a próxima pauta.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[30px_1fr] gap-3 py-[clamp(20px,1.9vw,34px)] border-t border-navy/15 border-b sm:grid-cols-[46px_1fr] sm:gap-4">
+          <span class="text-[13px] font-semibold text-taupe leading-[1.5]">05</span>
+          <div>
+            <h3 class="text-[21px] font-bold leading-snug text-navy">Nada de fórmulas prontas</h3>
+            <p class="t-body text-navy/70 mt-2">Cada empresa tem um momento, um setor e um porta-voz. O plano é desenhado a partir disso, não de um pacote de prateleira.</p>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     7. COMO FUNCIONA
+     Segunda instância do trilho de cards da referência — aqui em banda escura e
+     com exatamente 4 cards (as 4 etapas), sem transbordo.
+============================================================================= -->
+<section id="como-funciona" class="relative bg-navy overflow-hidden">
+  <svg viewBox="0 0 1000 1000" class="pointer-events-none absolute -top-[34%] -left-[16%] w-[48%] opacity-[.16]" aria-hidden="true">
+    <circle cx="500" cy="500" r="400" fill="none" stroke="#A8A8A4" stroke-width="70" stroke-linecap="round" stroke-dasharray="700 2513.3" stroke-dashoffset="0"/>
+  </svg>
+
+  <div class="relative shell py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner">
+      <div class="grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 lg:gap-16">
+        <div>
+          <span class="eyebrow on-dark"><i></i><span class="t-eyebrow text-cream">Como funciona</span></span>
+          <h2 class="t-h2 text-cream mt-[clamp(18px,1.6vw,30px)]">
+            Quatro etapas, do<br>diagnóstico ao relatório<br>com valoração
+          </h2>
+        </div>
+        <div>
+          <p class="ital t-lede text-cream/70 max-w-[46ch]">
+            A objeção mais comum não é preço, é não entender o que está sendo entregue. Este é
+            o ciclo, do primeiro diagnóstico até a prestação de contas do período.
+          </p>
+          <a href="#faq" class="cta mt-[clamp(22px,2vw,38px)]">
+            <span class="pill bg-cream text-navy hover:bg-taupe">Dúvidas frequentes</span>
+            <span class="badge bg-cream text-navy">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-[clamp(44px,4.5vw,86px)] grid sm:grid-cols-2 xl:grid-cols-4 gap-[26px]">
+        <article class="rounded-[18px] bg-navy-900 p-8 min-h-[300px] flex flex-col">
+          <span class="text-[13px] font-semibold tracking-[0.18em] text-taupe">01</span>
+          <h3 class="text-[16px] font-bold text-cream leading-tight mt-4">Diagnóstico</h3>
+          <p class="t-body text-cream/60 mt-auto pt-8">Leitura do momento da empresa, do setor e do porta-voz. O que existe de história real para contar, e o que ainda não está pronto para ir à imprensa.</p>
+        </article>
+        <article class="rounded-[18px] bg-navy-900 p-8 min-h-[300px] flex flex-col">
+          <span class="text-[13px] font-semibold tracking-[0.18em] text-taupe">02</span>
+          <h3 class="text-[16px] font-bold text-cream leading-tight mt-4">Produção e relacionamento<br>com a imprensa</h3>
+          <p class="t-body text-cream/60 mt-auto pt-8">Pauta apurada, texto escrito e oferecido a quem de fato cobre aquele assunto. Preparo do porta-voz antes de cada entrevista.</p>
+        </article>
+        <article class="rounded-[18px] bg-navy-900 p-8 min-h-[300px] flex flex-col">
+          <span class="text-[13px] font-semibold tracking-[0.18em] text-taupe">03</span>
+          <h3 class="text-[16px] font-bold text-cream leading-tight mt-4">Acompanhamento</h3>
+          <p class="t-body text-cream/60 mt-auto pt-8">Ajuste de rota mês a mês: o que rendeu, qual veículo respondeu, qual ângulo precisa mudar. Comunicação em situações sensíveis entra aqui.</p>
+        </article>
+        <article class="rounded-[18px] bg-navy-900 p-8 min-h-[300px] flex flex-col">
+          <span class="text-[13px] font-semibold tracking-[0.18em] text-taupe">04</span>
+          <h3 class="text-[16px] font-bold text-cream leading-tight mt-4">Relatório e valoração</h3>
+          <p class="t-body text-cream/60 mt-auto pt-8">Ao fim do período contratado, todas as publicações conquistadas com a valoração de cada uma: quanto custaria comprar aquele espaço como anúncio pago.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     8. PROVA — VEÍCULOS E RESULTADOS
+     Mesma grade de cabeçalho da referência + um mural em grade com filetes de
+     1px (o equivalente sóbrio do "mural" das outras referências aprovadas).
+============================================================================= -->
+<section class="bg-cream-2">
+  <div class="shell py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner">
+      <div class="grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 lg:gap-16">
+        <div>
+          <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Prova</span></span>
+          <h2 class="t-h2 text-navy mt-[clamp(18px,1.6vw,30px)]">
+            Validação externa,<br>medida em espaço<br>conquistado
+          </h2>
+        </div>
+        <div>
+          <p class="ital t-lede text-navy/70 max-w-[46ch]">
+            Assessoria de imprensa não é você falando de você: é um terceiro decidindo que a
+            sua história merece o espaço dele. Por isso o resultado é medido pelo que foi publicado, e pelo quanto aquele espaço valeria, se fosse comprado.
+          </p>
+        </div>
+      </div>
+
+      <!-- provisório: substituir estes rótulos pelos logos/nomes reais dos veículos
+           assim que a cliente enviar a relação de publicações conquistadas -->
+      <div class="mt-[clamp(44px,4.5vw,86px)] grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 border-t border-l border-navy/15">
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">Imprensa nacional</span></div>
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">Imprensa regional</span></div>
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">Portais setoriais</span></div>
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">Revistas de negócios</span></div>
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">TV e rádio</span></div>
+        <div class="border-r border-b border-navy/15 h-[112px] grid place-items-center px-4"><span class="text-[13px] font-medium tracking-[0.14em] uppercase text-navy/55 text-center">Podcasts e newsletters</span></div>
+      </div>
+
+      <!-- banda de números — só dados confirmados; os métricos ficam pendentes -->
+      <div class="mt-[clamp(36px,3.4vw,64px)] grid sm:grid-cols-2 xl:grid-cols-4 gap-x-10 gap-y-9">
+        <div class="border-t border-navy/25 pt-5">
+          <p class="text-[30px] font-extrabold leading-none text-navy">+25</p>
+          <p class="text-[13px] font-light leading-snug text-navy/60 mt-2.5">anos de relacionamento com redações</p>
+        </div>
+        <div class="border-t border-navy/25 pt-5">
+          <p class="text-[30px] font-extrabold leading-none text-navy">2019</p>
+          <p class="text-[13px] font-light leading-snug text-navy/60 mt-2.5">ano de fundação da Ties Comunicação</p>
+        </div>
+        <div class="border-t border-navy/25 pt-5">
+          <p class="text-[30px] font-extrabold leading-none text-navy">100%</p>
+          <p class="text-[13px] font-light leading-snug text-navy/60 mt-2.5">dos atendimentos conduzidos diretamente pela fundadora</p>
+        </div>
+        <!-- provisório: número real de publicações e valoração acumulada a confirmar
+             com a cliente (ela emite esse relatório ao fim de cada período) -->
+        <div class="border-t border-navy/25 pt-5">
+          <p class="text-[30px] font-extrabold leading-none text-taupe">R$ 000</p>
+          <p class="text-[13px] font-light leading-snug text-navy/60 mt-2.5">valoração acumulada das publicações conquistadas <span class="text-taupe">(a confirmar)</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     9. BLOG
+     Slot da referência: "What's new across Omnicom". É o único bloco da página
+     que usa o container ESTREITO (1200/1920 = 62,5%). H2 à esquerda, pílula
+     "ver todos" à direita, 3 cards claros SEM IMAGEM — título no topo, vão
+     vazio no meio, data + badge circular de seta no rodapé. Fundo cinza claro
+     e um arco gigante sangrando pelo canto superior esquerdo.
+============================================================================= -->
+<section id="blog" class="relative bg-cream-2 overflow-hidden">
+  <svg viewBox="0 0 1000 1000" class="pointer-events-none absolute -top-[60%] -left-[26%] w-[70%] opacity-55" aria-hidden="true">
+    <circle cx="500" cy="500" r="400" fill="none" stroke="#A8A8A4" stroke-width="60" stroke-linecap="round" stroke-dasharray="820 2513.3" stroke-dashoffset="0"/>
+  </svg>
+
+  <div class="relative inset py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner">
+
+      <!-- nome próprio do blog ainda não definido -->
+      <!-- provisório: a cliente ainda vai batizar o blog (recomendação do relatório) -->
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <h2 class="t-h2 text-navy">O que estamos<br>publicando</h2>
+          <div class="flex items-center gap-3 mt-5">
+            <img src="../assets/fotos/foto-02.jpg" alt=""
+                 class="w-9 h-9 rounded-full object-cover object-[50%_20%] grayscale">
+            <span class="text-[13px] font-light text-navy/60">por Fernanda Thiesen Furtado</span>
+          </div>
+        </div>
+        <a href="#blog" class="cta">
+          <span class="pill bg-navy text-cream hover:bg-navy-700">Ver todos</span>
+          <span class="badge bg-navy text-cream">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- provisório: posts de exemplo — substituir pelos textos reais da cliente -->
+      <div class="mt-[clamp(34px,3.2vw,58px)] grid md:grid-cols-3 gap-[25px]">
+
+        <article class="bg-[#F7F6F3] rounded-[10px] p-8 min-h-[290px] flex flex-col lift">
+          <h3 class="text-[16px] font-semibold leading-[1.35] text-navy">
+            O que uma redação considera pauta, e por que um release não vira notícia
+          </h3>
+          <div class="mt-auto pt-10 flex items-center justify-between">
+            <span class="text-[13px] font-light text-navy/55">12 de agosto, 2026</span>
+            <span class="w-[54px] h-[54px] rounded-full bg-navy text-cream grid place-items-center flex-none">
+              <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </article>
+
+        <article class="bg-[#F7F6F3] rounded-[10px] p-8 min-h-[290px] flex flex-col lift">
+          <h3 class="text-[16px] font-semibold leading-[1.35] text-navy">
+            Media training não é ensaiar respostas: é saber o que você não vai dizer
+          </h3>
+          <div class="mt-auto pt-10 flex items-center justify-between">
+            <span class="text-[13px] font-light text-navy/55">04 de agosto, 2026</span>
+            <span class="w-[54px] h-[54px] rounded-full bg-navy text-cream grid place-items-center flex-none">
+              <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </article>
+
+        <article class="bg-[#F7F6F3] rounded-[10px] p-8 min-h-[290px] flex flex-col lift">
+          <h3 class="text-[16px] font-semibold leading-[1.35] text-navy">
+            Quanto vale meio minuto de TV? O cálculo de valoração explicado
+          </h3>
+          <div class="mt-auto pt-10 flex items-center justify-between">
+            <span class="text-[13px] font-light text-navy/55">28 de julho, 2026</span>
+            <span class="w-[54px] h-[54px] rounded-full bg-navy text-cream grid place-items-center flex-none">
+              <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     10. CASES / DEPOIMENTOS
+     Terceira instância do trilho de cards escuros da referência — aqui os cards
+     carregam depoimento em serifa itálica (a itálica fica reservada a este uso e
+     aos parágrafos de apoio) e as aspas em taupe, como o ícone da marca.
+============================================================================= -->
+<section id="cases" class="bg-cream overflow-hidden">
+  <div class="py-[clamp(70px,6.5vw,120px)]">
+    <div class="shell">
+      <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 lg:gap-16">
+        <div>
+          <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Cases e depoimentos</span></span>
+          <h2 class="t-h2 text-navy mt-[clamp(18px,1.6vw,30px)]">
+            O que os clientes<br>dizem depois de<br>aparecer
+          </h2>
+        </div>
+        <div>
+          <p class="ital t-lede text-navy/70 max-w-[46ch]">
+            Prova social em texto, por escolha da própria consultoria: o que interessa é o que
+            mudou na empresa depois da publicação, não a produção de um vídeo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- provisório: depoimentos ainda não coletados junto aos clientes -->
+    <div class="mt-[clamp(44px,4.5vw,86px)] pl-[clamp(1.25rem,12.34vw,240px)]">
+      <div class="rail" id="rail-cases">
+
+        <article class="card-rail bg-navy text-cream p-9 flex flex-col">
+          <svg width="42" height="34" viewBox="0 0 42 34" fill="#A8A8A4" aria-hidden="true">
+            <path d="M0 34V19.5C0 8.7 5.9 1.9 17.6 0l1.9 5.4C13 7.3 9.6 11 9.6 16.2h7.8V34H0Zm22.6 0V19.5C22.6 8.7 28.5 1.9 40.2 0l1.9 5.4c-6.5 1.9-9.9 5.6-9.9 10.8h7.8V34H22.6Z"/>
+          </svg>
+          <p class="ital text-[16px] leading-[1.5] text-cream/85 mt-6">
+            Depoimento a ser fornecido pelo cliente. O formato previsto é curto: o que a empresa
+            buscava, o que foi publicado e o que mudou depois disso.
+          </p>
+          <div class="mt-auto pt-8 border-t border-cream/15">
+            <p class="text-[13px] font-semibold text-cream">Nome do cliente</p>
+            <p class="text-[13px] font-light text-cream/55 mt-1">Cargo · Empresa · Setor</p>
+          </div>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-9 flex flex-col">
+          <svg width="42" height="34" viewBox="0 0 42 34" fill="#A8A8A4" aria-hidden="true">
+            <path d="M0 34V19.5C0 8.7 5.9 1.9 17.6 0l1.9 5.4C13 7.3 9.6 11 9.6 16.2h7.8V34H0Zm22.6 0V19.5C22.6 8.7 28.5 1.9 40.2 0l1.9 5.4c-6.5 1.9-9.9 5.6-9.9 10.8h7.8V34H22.6Z"/>
+          </svg>
+          <p class="ital text-[16px] leading-[1.5] text-cream/85 mt-6">
+            Depoimento a ser fornecido pelo cliente. Espaço reservado para um relato de
+            executivo posicionado como fonte na imprensa do setor.
+          </p>
+          <div class="mt-auto pt-8 border-t border-cream/15">
+            <p class="text-[13px] font-semibold text-cream">Nome do executivo</p>
+            <p class="text-[13px] font-light text-cream/55 mt-1">Cargo · Empresa · Setor</p>
+          </div>
+        </article>
+
+        <article class="card-rail bg-navy-900 text-cream p-9 flex flex-col">
+          <svg width="42" height="34" viewBox="0 0 42 34" fill="#A8A8A4" aria-hidden="true">
+            <path d="M0 34V19.5C0 8.7 5.9 1.9 17.6 0l1.9 5.4C13 7.3 9.6 11 9.6 16.2h7.8V34H0Zm22.6 0V19.5C22.6 8.7 28.5 1.9 40.2 0l1.9 5.4c-6.5 1.9-9.9 5.6-9.9 10.8h7.8V34H22.6Z"/>
+          </svg>
+          <p class="ital text-[16px] leading-[1.5] text-cream/85 mt-6">
+            Depoimento a ser fornecido pelo cliente. Espaço reservado para um case de cobertura
+            de evento, com a rede de apoio acionada.
+          </p>
+          <div class="mt-auto pt-8 border-t border-cream/15">
+            <p class="text-[13px] font-semibold text-cream">Nome do cliente</p>
+            <p class="text-[13px] font-light text-cream/55 mt-1">Cargo · Empresa · Setor</p>
+          </div>
+        </article>
+
+        <div class="w-[clamp(1.25rem,12.34vw,240px)] flex-none" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="shell mt-[clamp(26px,2.6vw,48px)]">
+      <div class="inner flex items-center gap-3">
+        <button data-rail="rail-cases" data-dir="-1" aria-label="Anterior"
+                class="w-11 h-11 rounded-full border border-navy/30 text-navy grid place-items-center hover:bg-navy hover:text-cream transition-colors">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button data-rail="rail-cases" data-dir="1" aria-label="Próximo"
+                class="w-11 h-11 rounded-full border border-navy/30 text-navy grid place-items-center hover:bg-navy hover:text-cream transition-colors">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     11. FAQ
+     Mesma grade título-esquerda / conteúdo-direita. Acordeão com filetes de 1px
+     e um "+" que gira — sem caixas, sem sombras (a referência não usa nenhuma).
+============================================================================= -->
+<section id="faq" class="bg-cream">
+  <div class="shell py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-10 lg:gap-16">
+
+      <div class="lg:sticky lg:top-24 self-start">
+        <span class="eyebrow"><i></i><span class="t-eyebrow text-navy">Dúvidas frequentes</span></span>
+        <h2 class="t-h2 text-navy mt-[clamp(18px,1.6vw,30px)]">
+          As quatro perguntas<br>que aparecem em<br>toda conversa
+        </h2>
+      </div>
+
+      <div class="lg:pt-2">
+        <details class="qa" open>
+          <summary class="flex items-start justify-between gap-6 py-[clamp(20px,1.8vw,32px)]">
+            <span class="text-[21px] font-semibold leading-snug text-navy">Para quem é e para quem não é esse trabalho?</span>
+            <span class="plus flex-none w-8 h-8 rounded-full border border-navy/25 grid place-items-center text-taupe mt-0.5">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <p class="t-body text-navy/70 pb-[clamp(20px,1.8vw,32px)] max-w-[62ch]">
+            É para pequenas e médias empresas, executivos e C-levels que já têm algo real acontecendo (um produto, um número, uma decisão, uma leitura de mercado) e precisam que isso seja reconhecido fora de casa. Não é para quem busca volume de
+            posts, promessa de venda direta ou quem ainda não quer expor um porta-voz.
+          </p>
+        </details>
+
+        <details class="qa">
+          <summary class="flex items-start justify-between gap-6 py-[clamp(20px,1.8vw,32px)]">
+            <span class="text-[21px] font-semibold leading-snug text-navy">Como funciona o trabalho na prática?</span>
+            <span class="plus flex-none w-8 h-8 rounded-full border border-navy/25 grid place-items-center text-taupe mt-0.5">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <p class="t-body text-navy/70 pb-[clamp(20px,1.8vw,32px)] max-w-[62ch]">
+            Começa por um diagnóstico do momento da empresa e do porta-voz. A partir dele, as
+            pautas são apuradas, escritas e oferecidas aos jornalistas que realmente cobrem aquele assunto, com preparo do porta-voz antes de cada entrevista. O ciclo é
+            acompanhado mês a mês e fecha com relatório e valoração.
+          </p>
+        </details>
+
+        <details class="qa">
+          <summary class="flex items-start justify-between gap-6 py-[clamp(20px,1.8vw,32px)]">
+            <span class="text-[21px] font-semibold leading-snug text-navy">Como sei que o investimento valeu a pena?</span>
+            <span class="plus flex-none w-8 h-8 rounded-full border border-navy/25 grid place-items-center text-taupe mt-0.5">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <p class="t-body text-navy/70 pb-[clamp(20px,1.8vw,32px)] max-w-[62ch]">
+            Ao fim de cada período contratado, a empresa recebe um relatório com todas as
+            publicações conquistadas e a valoração de cada uma, ou seja, quanto custaria comprar aquele
+            mesmo espaço de mídia, se fosse anúncio pago. É um número comparável, no lugar de
+            uma percepção.
+          </p>
+        </details>
+
+        <details class="qa">
+          <summary class="flex items-start justify-between gap-6 py-[clamp(20px,1.8vw,32px)]">
+            <span class="text-[21px] font-semibold leading-snug text-navy">Como saber se o serviço é para a minha empresa?</span>
+            <span class="plus flex-none w-8 h-8 rounded-full border border-navy/25 grid place-items-center text-taupe mt-0.5">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <p class="t-body text-navy/70 pb-[clamp(20px,1.8vw,32px)] max-w-[62ch]">
+            A primeira conversa serve exatamente para isso e não tem custo. Se a leitura for de
+            que ainda não é o momento, isso é dito com franqueza. Vale registrar também que uma
+            estrutura enxuta permite um investimento bem abaixo do de uma grande agência, sem que a senioridade de quem conduz o trabalho mude.
+          </p>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     12. CONTATO
+     Assume a geometria do bloco de fechamento da referência: assinatura grande
+     misturando bold + serifa itálica à esquerda, conteúdo à direita.
+============================================================================= -->
+<section id="contato" class="relative bg-navy overflow-hidden">
+  <svg viewBox="0 0 1000 1000" class="pointer-events-none absolute -bottom-[50%] -right-[14%] w-[50%] opacity-[.15]" aria-hidden="true">
+    <circle cx="500" cy="500" r="400" fill="none" stroke="#A8A8A4" stroke-width="70" stroke-linecap="round" stroke-dasharray="640 2513.3" stroke-dashoffset="-1256.6"/>
+  </svg>
+
+  <div class="relative shell py-[clamp(70px,6.5vw,120px)]">
+    <div class="inner grid lg:grid-cols-[1fr_minmax(0,560px)] gap-12 lg:gap-16">
+
+      <div>
+        <span class="eyebrow on-dark"><i></i><span class="t-eyebrow text-cream">Contato</span></span>
+        <p class="t-h1-sm text-cream mt-[clamp(20px,1.8vw,34px)]">
+          Vamos <span class="ital font-normal">conversar</span>?
+        </p>
+        <p class="t-body text-cream/65 mt-8 max-w-[42ch]">
+          O ciclo costuma ser curto: uma conversa de diagnóstico, uma proposta e o começo do
+          trabalho. Se preferir, o WhatsApp abaixo vai direto para a Fernanda.
+        </p>
+
+        <div class="mt-10 space-y-6">
+          <div>
+            <p class="text-[13px] font-semibold text-cream">E-mail</p>
+            <a href="mailto:thiesen.fernanda@gmail.com" class="text-[13px] font-light text-cream/65 hover:text-taupe transition-colors">thiesen.fernanda@gmail.com</a>
+          </div>
+          <div>
+            <p class="text-[13px] font-semibold text-cream">WhatsApp</p>
+            <a href="https://wa.me/554788038218" class="text-[13px] font-light text-cream/65 hover:text-taupe transition-colors">+55 47 8803-8218</a>
+          </div>
+          <a href="https://wa.me/554788038218" class="cta pt-2">
+            <span class="pill bg-cream text-navy hover:bg-taupe">Falar no WhatsApp</span>
+            <span class="badge bg-cream text-navy">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <form class="lg:pt-3" onsubmit="event.preventDefault();">
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-7">
+          <div class="sm:col-span-2">
+            <label for="f-nome" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Nome</label>
+            <input id="f-nome" class="fld" type="text" placeholder="Seu nome completo" required>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="f-empresa" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Empresa</label>
+            <input id="f-empresa" class="fld" type="text" placeholder="Razão social ou nome fantasia" required>
+          </div>
+          <div>
+            <label for="f-email" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">E-mail corporativo</label>
+            <input id="f-email" class="fld" type="email" placeholder="nome@suaempresa.com.br" required>
+          </div>
+          <div>
+            <label for="f-tel" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Telefone</label>
+            <input id="f-tel" class="fld" type="tel" placeholder="(00) 00000-0000">
+          </div>
+          <div>
+            <label for="f-site" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Site</label>
+            <input id="f-site" class="fld" type="url" placeholder="www.suaempresa.com.br">
+          </div>
+          <div>
+            <label for="f-int" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Interesse</label>
+            <select id="f-int" class="fld">
+              <option>Assessoria de imprensa</option>
+              <option>Produção de conteúdo jornalístico</option>
+              <option>Ghostwriting para C-levels</option>
+              <option>Gestão de LinkedIn</option>
+              <option>Consultoria em comunicação empresarial</option>
+              <option>Consultoria em comunicação interna</option>
+              <option>Ainda não sei, quero entender</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="f-msg" class="block text-[11px] font-semibold uppercase tracking-[0.16em] text-taupe mb-1">Mensagem</label>
+            <textarea id="f-msg" rows="3" class="fld resize-none" placeholder="Em poucas linhas: o momento da empresa e o que motivou o contato."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="cta mt-10">
+          <span class="pill bg-taupe text-navy hover:bg-cream">Enviar mensagem</span>
+          <span class="badge bg-taupe text-navy">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M12 4H5.6M12 4v6.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================================
+     13. FOOTER
+     Estrutura literal da referência: container ESTREITO (o mesmo do bloco de
+     posts), assinatura grande à esquerda misturando bold + serifa itálica,
+     colunas de links à direita no padrão "título / rótulo em bold / valor em
+     light", muito espaço vazio embaixo e uma barra fina de copyright + legal.
+============================================================================= -->
+<footer class="bg-navy-900 text-cream">
+  <div class="inset pt-[clamp(64px,6vw,110px)] pb-[clamp(28px,2.6vw,44px)]">
+    <div class="inner">
+
+      <div class="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-20">
+
+        <!-- assinatura -->
+        <div>
+          <p class="text-[30px] font-bold leading-none tracking-[-0.025em]">
+            Damos <span class="ital font-normal">valor</span>
+          </p>
+          <p class="text-[30px] font-bold leading-[1.15] tracking-[-0.025em] mt-1">
+            ao que <span class="ital font-normal">merece</span> ser dito.
+          </p>
+          <div class="flex items-baseline gap-2.5 mt-10">
+            <span class="text-[21px] font-extrabold tracking-[-0.045em] leading-none">ties</span>
+            <span class="text-[11px] font-extralight uppercase tracking-[0.38em] text-taupe leading-none">Comunicação</span>
+          </div>
+        </div>
+
+        <!-- colunas de links -->
+        <div class="grid grid-cols-1 break-words sm:grid-cols-3 gap-x-[clamp(28px,3vw,58px)] gap-y-10">
+          <div>
+            <p class="text-[13px] font-bold mb-6">Contato</p>
+            <p class="text-[13px] font-semibold">E-mail</p>
+            <a href="mailto:thiesen.fernanda@gmail.com" class="block text-[13px] font-light text-cream/55 hover:text-taupe transition-colors mb-4">thiesen.fernanda@gmail.com</a>
+            <p class="text-[13px] font-semibold">WhatsApp</p>
+            <a href="https://wa.me/554788038218" class="block text-[13px] font-light text-cream/55 hover:text-taupe transition-colors">+55 47 8803-8218</a>
+          </div>
+          <div>
+            <p class="text-[13px] font-bold mb-6">Navegação</p>
+            <ul class="space-y-2 text-[13px] font-light text-cream/55">
+              <li><a href="#sobre" class="hover:text-taupe transition-colors">Sobre</a></li>
+              <li><a href="#servicos" class="hover:text-taupe transition-colors">Serviços</a></li>
+              <li><a href="#como-funciona" class="hover:text-taupe transition-colors">Como funciona</a></li>
+              <li><a href="#cases" class="hover:text-taupe transition-colors">Cases</a></li>
+              <li><a href="#blog" class="hover:text-taupe transition-colors">Blog</a></li>
+              <li><a href="#faq" class="hover:text-taupe transition-colors">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[13px] font-bold mb-6">Redes</p>
+            <ul class="space-y-2 text-[13px] font-light text-cream/55">
+              <li><a href="#" class="hover:text-taupe transition-colors">LinkedIn</a></li>
+              <li><a href="#" class="hover:text-taupe transition-colors">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- espaço vazio deliberado antes da barra final (proporção da referência) -->
+      <div class="h-[clamp(60px,6vw,120px)]"></div>
+
+      <div class="flex flex-wrap items-center justify-between gap-4 text-[13px] text-cream/45">
+        <p>© 2026 Ties Comunicação. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-8">
+          <a href="#" class="hover:text-taupe transition-colors">Política de privacidade</a>
+          <a href="#topo" class="hover:text-taupe transition-colors">Voltar ao topo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- botão flutuante de WhatsApp -->
+<a href="https://wa.me/554788038218" aria-label="Falar no WhatsApp"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-navy text-cream grid place-items-center shadow-lg hover:bg-navy-700 transition-colors">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43l-.47-.01c-.16 0-.43.06-.65.31-.23.24-.86.84-.86 2.05s.88 2.38 1 2.54c.13.16 1.74 2.65 4.2 3.71.59.26 1.05.41 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.18-.48-.3Z"/></svg>
+</a>
+
+<script>
+  // barra condensada só depois do hero (comportamento do site de referência)
+  const bar = document.getElementById('bar');
+  const hero = document.getElementById('topo');
+  const io = new IntersectionObserver(
+    ([e]) => bar.classList.toggle('on', !e.isIntersecting),
+    { rootMargin: '-70% 0px 0px 0px' }
+  );
+  io.observe(hero);
+
+  // setas dos trilhos de cards
+  document.querySelectorAll('[data-rail]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const rail = document.getElementById(btn.dataset.rail);
+      rail.scrollBy({ left: 376 * Number(btn.dataset.dir), behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+<!-- ===== Barra de navegação da APRESENTAÇÃO (Agência Kamino) =====================
+     Elemento externo ao layout: existe só para navegar entre as 3 ideias.
+     Não faz parte da proposta e será removido na versão final do site.
+============================================================================ -->
+<style>
+  .kmn-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:99999;display:flex;align-items:center;gap:8px;
+    padding:7px 8px 7px 16px;border-radius:999px;background:rgba(15,23,42,.94);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border:1px solid rgba(96,165,250,.32);box-shadow:0 12px 34px rgba(2,6,23,.45);
+    font-family:Arial, Helvetica, sans-serif;color:#cbd5e1;font-size:13px;line-height:1;
+    opacity:.5;transition:opacity .25s ease,transform .25s ease}
+  .kmn-bar:hover,.kmn-bar:focus-within{opacity:1;transform:translateX(-50%) translateY(-2px)}
+  .kmn-bar .kmn-tag{letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:700;color:#60a5fa}
+  .kmn-bar a{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;
+    text-decoration:none;color:#e2e8f0;font-weight:500;white-space:nowrap;transition:background .2s ease}
+  .kmn-bar a.kmn-home{background:rgba(255,255,255,.08)}
+  .kmn-bar a.kmn-home:hover{background:rgba(255,255,255,.16)}
+  .kmn-bar a.kmn-next{background:#2563eb;color:#fff;font-weight:700}
+  .kmn-bar a.kmn-next:hover{background:#1d4ed8}
+  @media (max-width:720px){
+    .kmn-bar{bottom:12px;padding:6px 7px 6px 12px;font-size:13px;opacity:.92}
+    .kmn-bar .kmn-tag{display:none}
+    .kmn-bar a{padding:8px 11px}
+  }
+  @media print{.kmn-bar{display:none}}
+</style>
+<nav class="kmn-bar" aria-label="Navegação da apresentação">
+  <span class="kmn-tag">Ideia 2 de 3</span>
+  <a class="kmn-home" href="../index.html">&#8592; Ver as 3 ideias</a>
+  <a class="kmn-next" href="ideia-3-mosaico.html">Ideia 3 &#8594;</a>
+</nav>
+</body>
+</html>
