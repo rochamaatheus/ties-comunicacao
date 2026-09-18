@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#16374C">
+<link rel="icon" href="assets/simbolo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+
+<script src="assets/site.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ties Comunicação | Damos valor ao que merece ser dito.</title>
+<meta name="description" content="Ties Comunicação, consultoria de comunicação empresarial e assessoria de imprensa para empresas, executivos e C-levels.">
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#EEEDE9; color:#16374C; -webkit-font-smoothing:antialiased; }
+
+  /* ---- Tipografia da referência: peso 300 + fragmento 700 na MESMA frase ---- */
+  .h-sec   { font-weight:300; font-size:2.5rem; line-height:1.28; letter-spacing:-.01em; }
+  .h-sec b { font-weight:700; }
+  .h-hero  { font-weight:300; letter-spacing:-.02em; }
+  .h-hero b{ font-weight:700; }
+  .p-ref   { font-weight:400; font-size:1.0625rem; line-height:1.62; }
+  .p-ref b { font-weight:600; }
+  .track   { letter-spacing:.18em; }
+
+  /* ---- Traço "à mão" duplo sob o fragmento em bold (recurso da referência) ---- */
+  .uline { position:relative; display:inline-block; }
+  .uline::after{ content:''; position:absolute; left:-4px; right:-14px; bottom:-.14em;
+                 border-top:3px solid #A99B8D; transform:rotate(-.45deg); border-radius:2px; }
+  .uline::before{ content:''; position:absolute; left:10px; right:-4px; bottom:-.28em;
+                 border-top:2px solid #A99B8D; opacity:.7; transform:rotate(.5deg); border-radius:2px; }
+  .uline-light::after, .uline-light::before { border-color:#EEEDE9; }
+
+  /* ---- Pílulas: rounded-full, caixa alta, bold 13px (idênticas à referência) ---- */
+  .pill { display:inline-block; border-radius:9999px; padding:.95rem 2.1rem;
+          font-size:.8125rem; font-weight:700; letter-spacing:.02em; text-transform:uppercase;
+          transition:all .25s ease; text-align:center; line-height:1.35; }
+  .pill-solid   { background:#16374C; color:#EEEDE9; }
+  .pill-solid:hover { background:#102A3B; }
+  .pill-outline { border:1.5px solid #16374C; color:#16374C; }
+  .pill-outline:hover { background:#16374C; color:#EEEDE9; }
+  .pill-light   { border:1.5px solid #EEEDE9; color:#EEEDE9; }
+  .pill-light:hover { background:#EEEDE9; color:#16374C; }
+  .pill-taupe   { background:#A99B8D; color:#16374C; }
+  .pill-taupe:hover { background:#C4BAB0; }
+
+  /* ---- Duotone navy → off-white (duas camadas de blend) ---- */
+  .duo { position:relative; background:#16374C; overflow:hidden; }
+  .duo img { width:100%; height:100%; object-fit:cover; display:block;
+             filter:grayscale(1) contrast(1.12) brightness(1.04); mix-blend-mode:screen; }
+  .duo::after { content:''; position:absolute; inset:0; background:#EEEDE9;
+                mix-blend-mode:multiply; pointer-events:none; }
+
+  /* ---- MOSAICO: par largo(7) + faixa estreita(3), sem gap, 4 pares por linha ---- */
+  .mosaic { display:grid; grid-template-columns:repeat(4, 7fr 3fr); gap:0; }
+  .cell   { position:relative; height:235px; overflow:hidden; }
+  .cell-label { position:absolute; inset:0; display:flex; align-items:center;
+                padding:0 1.75rem; font-size:1.25rem; line-height:1.28; font-weight:400; z-index:2; }
+  .cell .ovl { position:absolute; inset:0; z-index:1; }
+  .cell .num { position:absolute; top:1.1rem; left:1.75rem; z-index:3;
+               font-size:.6875rem; letter-spacing:.18em; font-weight:500; }
+
+  /* ---- Placeholder de imagem de post (até a cliente publicar os textos reais) ---- */
+  .ph::before { content:''; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(135deg, rgba(238,237,233,.10) 0 10px, transparent 10px 20px); }
+
+  /* ---- Cards (blog / depoimentos): quadrados, borda fina, sem sombra ---- */
+  .card { background:#EEEDE9; border:1px solid rgba(22,55,76,.14); display:flex; flex-direction:column; }
+
+  /* ---- Formulário inline da referência: campos pílula cinza + botão pílula ---- */
+  .inp { background:#E5E3DD; border:0; border-radius:9999px; padding:1.05rem 1.6rem;
+         font-size:.95rem; color:#16374C; width:100%; outline:none; }
+  .inp::placeholder { color:rgba(22,55,76,.5); }
+  .inp:focus { box-shadow:0 0 0 1.5px #A99B8D inset; }
+  textarea.inp { border-radius:1.4rem; resize:none; }
+
+  details > summary { list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] .fx { transform:rotate(45deg); }
+  .fx { transition:transform .25s ease; }
+
+  @media (max-width:1023px){
+    .mosaic { grid-template-columns:repeat(2, 7fr 3fr); }
+    .h-sec  { font-size:1.9rem; }
+    .cell   { height:190px; }
+  }
+  @media (max-width:639px){
+    .mosaic { grid-template-columns:1fr; }
+    .mosaic .cell.duo { display:none; }   /* tiras estreitas de foto nao funcionam em 1 coluna */
+    .mosaic .cell:empty { display:none; } /* celulas de preenchimento do padrao do desktop */
+    .cell { height:128px; }
+    .cell-label { font-size:1.1rem; padding:0 1.5rem; }
+  }
+</style>
+<link rel="stylesheet" href="assets/final.css"></head>
+
+<body class="font-sans"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+
+<header class="fixed top-0 inset-x-0 z-50 bg-navy h-20 flex items-center">
+  <div class="mx-auto w-full max-w-ref px-6 flex items-center justify-between">
+
+    <a href="#topo" class="flex items-center gap-2.5 shrink-0"><img class="brand-logo" src="assets/logo-claro.svg" alt="Ties Comunicação, início" width="128" height="53"></a>
+
+    <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-[3.2rem] text-[1.02rem] font-light lowercase text-offwhite">
+      <a href="#sobre"     class="hover:text-taupe transition">a ties</a>
+      <a href="#servicos"  class="hover:text-taupe transition">serviços</a>
+      <a href="#metodo"    class="hover:text-taupe transition">como funciona</a>
+      <a href="#diferenciais"     class="hover:text-taupe transition">por que a Ties</a>
+      <a href="#blog"      class="hover:text-taupe transition">blog</a>
+      <a href="#contato"   class="hover:text-taupe transition">contato</a>
+    </nav>
+
+    <button id="menuBtn" class="lg:hidden text-offwhite text-xl" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><span aria-hidden="true" class="icon fa-solid fa-bars"></span></button>
+  </div>
+
+  <div id="mobileMenu" class="hidden absolute top-20 inset-x-0 bg-navy border-t border-white/10 px-6 py-6 space-y-4 text-offwhite font-light lowercase">
+    <a href="#sobre" class="block">a ties</a><a href="#servicos" class="block">serviços</a>
+    <a href="#metodo" class="block">como funciona</a><a href="#diferenciais" class="block">por que a Ties</a>
+    <a href="#blog" class="block">blog</a><a href="#contato" class="block">contato</a>
+  </div>
+</header>
+
+
+
+<main id="conteudo"><section id="topo" class="relative bg-navy text-offwhite min-h-screen flex flex-col justify-end overflow-hidden pt-20">
+
+  
+  <img class="hero-symbol" src="assets/simbolo.svg" alt="" aria-hidden="true">
+
+  <div class="relative mx-auto w-full max-w-ref px-6 pb-24">
+    <p class="text-[.72rem] track uppercase text-taupe font-light mb-8">
+      Assessoria de imprensa · Comunicação empresarial · Desde 2019
+    </p>
+
+    <h1 class="h-hero text-[3rem] sm:text-[4.4rem] lg:text-[5.6rem] leading-[1.05] max-w-[17ch]">
+      Damos valor ao que <b class="uline uline-light">merece ser dito.</b>
+    </h1>
+
+    <div class="mt-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+      <p class="p-ref max-w-[52ch] text-offwhite/85">
+        Uma consultoria de comunicação para empresas que precisam ser
+        <b>compreendidas antes de serem escolhidas</b>. Reputação, autoridade e presença na
+        imprensa com <b>atendimento sênior e 100% personalizado</b>.
+      </p>
+      <a href="#servicos" class="pill pill-light shrink-0">Conheça o que fazemos</a>
+    </div>
+
+    <div class="mt-16 flex items-center gap-3 text-offwhite/40 text-[.7rem] track uppercase font-light">
+      <span aria-hidden="true" class="icon fa-solid fa-arrow-down"></span> Arraste para baixo
+    </div>
+  </div>
+</section>
+
+
+
+<section id="imprensa" class="bg-offwhite">
+  <div class="mx-auto max-w-ref px-6 pt-24 pb-4 lg:pt-28">
+    <div class="grid lg:grid-cols-[41%_1fr] gap-10 lg:gap-[54px]">
+
+      <h2 class="h-sec">
+        Não é você falando de você.<br> É <b class="uline">o mercado falando</b><br> de você.
+      </h2>
+
+      <div class="space-y-6 lg:pt-2">
+        
+        <p class="p-ref">
+          Quando uma empresa conquista um espaço na imprensa, ela não ganha apenas visibilidade.
+          <b>Ganha credibilidade, fortalece sua reputação e passa a ocupar um lugar de referência
+          no mercado.</b>
+        </p>
+        <p class="p-ref">
+          Esse movimento também amplia a oportunidade de seus executivos, que passam a ser
+          percebidos como referência e procurados como <b>fontes qualificadas</b> para entrevistas
+          e análises.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="servicos" class="bg-offwhite pb-24">
+  <div class="mx-auto max-w-ref px-6 pt-20">
+    <div class="grid lg:grid-cols-[41%_1fr] gap-10 lg:gap-[54px] mb-12">
+
+      <h2 class="h-sec">
+        Comunicação empresarial<br> para quem precisa
+        <b class="uline">ser levado a sério.</b>
+      </h2>
+
+      <div class="space-y-6 lg:pt-2">
+        <p class="p-ref">
+          Na Ties, comunicação é decisão de negócio. Trabalhamos imprensa, conteúdo e presença
+          executiva a partir de um diagnóstico, nunca de um pacote pronto.
+        </p>
+        <p class="p-ref">
+          Cada frente pode ser contratada isoladamente ou combinada em um plano contínuo,
+          conforme o momento da empresa.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  <div class="mx-auto max-w-ref px-6">
+    <div class="mosaic">
+
+      
+      <button type="button" class="cell bg-navy service-button" data-service="0" aria-haspopup="dialog">
+        
+        <span class="cell-label text-offwhite">Assessoria de<br> imprensa</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-01.jpg" alt="" style="object-position:50% 22%"></div>
+
+      
+      <button type="button" class="cell bg-taupe service-button" data-service="1" aria-haspopup="dialog">
+        
+        <span class="cell-label text-navy">Produção de conteúdo<br> jornalístico</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-05.jpg" alt="" style="object-position:62% 28%"></div>
+
+      
+      <button type="button" class="cell bg-navy service-button" data-service="2" aria-haspopup="dialog">
+        
+        <span class="cell-label text-offwhite">Ghostwriting<br> para C-levels</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-09.jpg" alt="" style="object-position:45% 30%"></div>
+
+      
+      <button type="button" class="cell bg-taupe service-button" data-service="3" aria-haspopup="dialog">
+        
+        <span class="cell-label text-navy">Gestão de LinkedIn<br> executivo</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell bg-navy"></div>
+
+      
+      <button type="button" class="cell bg-taupe service-button" data-service="4" aria-haspopup="dialog">
+        
+        <span class="cell-label text-navy">Consultoria em<br> comunicação empresarial</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-12.jpg" alt="" style="object-position:50% 20%"></div>
+
+      
+      <button type="button" class="cell bg-navy service-button" data-service="5" aria-haspopup="dialog">
+        
+        <span class="cell-label text-offwhite">Consultoria em<br> comunicação interna</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-02.jpg" alt="" style="object-position:55% 28%"></div>
+
+      
+      <button type="button" class="cell bg-navy service-button" data-service="6" aria-haspopup="dialog">
+        
+        <span class="cell-label text-offwhite">Comunicação em<br> situações sensíveis</span>
+      <span class="service-more">Saiba mais <span aria-hidden="true">↗</span></span></button>
+      <div class="cell bg-taupe"></div>
+
+      
+      <a href="#contato" class="cell bg-navy group">
+        <span class="num text-taupe">+</span>
+        <h3 class="cell-label text-offwhite">
+          <span>Vamos conversar<br> sobre o seu <b class="font-bold">negócio?</b>
+            <span aria-hidden="true" class="icon fa-solid fa-arrow-right ml-2 text-taupe text-sm group-hover:translate-x-1 transition inline-block"></span>
+          </span>
+        </h3>
+      </a>
+      <div class="cell duo"><img loading="lazy" decoding="async" src="../assets/fotos/foto-06.jpg" alt="" style="object-position:50% 30%"></div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="sobre" class="relative bg-offwhite2 overflow-hidden">
+  
+  <div class="absolute left-0 top-16 w-[30%] h-[62%] bg-taupe hidden lg:block"></div>
+
+  <div class="relative mx-auto max-w-ref px-6 py-24">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
+
+      
+      <div class="relative h-[430px] lg:h-[520px]">
+        <div class="duo absolute left-0 top-16 w-[54%] h-[74%] rounded-xl shadow-lg">
+          <img loading="lazy" decoding="async" src="../assets/fotos/foto-08.jpg" alt="Fernanda Thiesen Furtado, fundadora da Ties Comunicação">
+        </div>
+        <div class="duo absolute left-[38%] top-0 w-[46%] h-[46%] rounded-xl shadow-lg">
+          <img loading="lazy" decoding="async" src="../assets/fotos/foto-03.jpg" alt="" style="object-position:50% 20%">
+        </div>
+        <div class="duo absolute left-[44%] top-[50%] w-[52%] h-[44%] rounded-xl shadow-lg">
+          <img loading="lazy" decoding="async" src="../assets/fotos/foto-11.jpg" alt="" style="object-position:50% 25%">
+        </div>
+        <div class="absolute left-[34%] top-[46%] w-[9%] h-[13%] bg-navy hidden lg:block"></div>
+      </div>
+
+      <div>
+        <h2 class="h-sec">
+          Uma consultoria de comunicação.<br> <b class="uline">Uma jornalista sênior por trás.</b>
+        </h2>
+
+        <div class="mt-12 space-y-5 max-w-[54ch]">
+          <p class="p-ref">
+            A Ties Comunicação nasceu em <b>2019</b>, depois de duas décadas de atuação em grandes
+            empresas e agências, com o propósito de <b>transformar histórias reais em reputação,
+            autoridade e influência</b>.
+          </p>
+          <p class="p-ref">
+            Quem atende é quem escreve: <b>Fernanda Thiesen Furtado</b> conduz o trabalho com
+            <b>25 anos de experiência</b>, graduada em Jornalismo e Letras e pós-graduada em
+            Marketing, Comunicação Empresarial e Relações Públicas, com uma
+            <b>rede de apoio acionada sob demanda</b> quando o projeto exige escala.
+          </p>
+        </div>
+
+        
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 border-t border-navy/20">
+          <div class="py-5 pr-4"><p class="text-[1.9rem] font-light leading-none">25</p><p class="text-[.68rem] track uppercase text-taupe mt-2 font-light">anos de<br> experiência</p></div>
+          <div class="py-5 pr-4"><p class="text-[1.9rem] font-light leading-none">2019</p><p class="text-[.68rem] track uppercase text-taupe mt-2 font-light">fundação<br> da Ties</p></div>
+          <div class="py-5 pr-4"><p class="text-[1.9rem] font-light leading-none">02</p><p class="text-[.68rem] track uppercase text-taupe mt-2 font-light">graduações:<br> jornalismo e letras</p></div>
+          <div class="py-5"><p class="text-[1.9rem] font-light leading-none">03</p><p class="text-[.68rem] track uppercase text-taupe mt-2 font-light">pós: mkt, com.<br> empresarial e rp</p></div>
+        </div>
+
+        <a href="#metodo" class="pill pill-solid mt-10">Entenda como trabalhamos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="diferenciais" class="bg-offwhite">
+  <div class="mx-auto max-w-ref px-6 py-24">
+    <div class="grid lg:grid-cols-[36%_1fr] gap-12 lg:gap-16 items-center">
+
+      <div>
+        <h2 class="h-sec">
+          Por trás de cada entrega tem<br> 
+          <b class="uline">quem escreve e quem atende</b>
+        </h2>
+        <p class="p-ref mt-12 max-w-[38ch]">
+          Uma operação enxuta e sênior, sem camadas de intermediação, e sem atender em escala.
+        </p>
+        <a href="#contato" class="pill pill-outline mt-10">Conheça o que nos diferencia</a>
+      </div>
+
+      <div class="bg-navy text-offwhite rounded-2xl p-9 lg:p-12">
+        <ol class="divide-y divide-white/15">
+          <li class="flex gap-7 pb-6">
+            <span class="text-taupe text-[.7rem] track uppercase pt-1.5 w-8 shrink-0">01</span>
+            <p class="p-ref text-offwhite/90"><b>Atendimento 100% personalizado</b>, do primeiro contato à entrega do relatório.</p>
+          </li>
+          <li class="flex gap-7 py-6">
+            <span class="text-taupe text-[.7rem] track uppercase pt-1.5 w-8 shrink-0">02</span>
+            <p class="p-ref text-offwhite/90"><b>Experiência real com comunicação executiva e imprensa</b>, dos dois lados do balcão.</p>
+          </li>
+          <li class="flex gap-7 py-6">
+            <span class="text-taupe text-[.7rem] track uppercase pt-1.5 w-8 shrink-0">03</span>
+            <p class="p-ref text-offwhite/90">Conteúdo com <b>linguagem refinada, estratégica e humana</b>, nunca texto de catálogo.</p>
+          </li>
+          <li class="flex gap-7 py-6">
+            <span class="text-taupe text-[.7rem] track uppercase pt-1.5 w-8 shrink-0">04</span>
+            <p class="p-ref text-offwhite/90"><b>Visão integrada</b> de LinkedIn, autoridade, reputação e imprensa.</p>
+          </li>
+          <li class="flex gap-7 pt-6">
+            <span class="text-taupe text-[.7rem] track uppercase pt-1.5 w-8 shrink-0">05</span>
+            <p class="p-ref text-offwhite/90"><b>Nada de fórmulas prontas</b>, cada cliente tem um contexto, um setor e um porta-voz.</p>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section id="blog" class="bg-offwhite2"><div class="mx-auto max-w-ref px-6 py-24 blog-layout">
+<div><p class="section-note">Blog da Ties</p><h2 class="h-sec">Uma leitura mais atenta<br> sobre <b class="uline">comunicação.</b></h2></div>
+<div class="blog-empty"><span class="blog-mark" aria-hidden="true">“</span><p class="p-ref">Imprensa, reputação e presença executiva. Um espaço para olhar além da publicação e entender o que constrói uma comunicação relevante.</p><p class="blog-status">Os primeiros artigos estão em preparação.</p><a class="text-link" href="#contato">Que assunto faz parte do seu momento?</a></div>
+</div></section>
+
+
+
+<section id="metodo" class="bg-navy text-offwhite">
+  <div class="mx-auto max-w-ref px-6 py-24 text-center">
+
+    <h2 class="h-sec !text-[2.3rem] lg:!text-[2.6rem] max-w-[26ch] mx-auto">
+      Do diagnóstico ao relatório, <b class="uline uline-light">quatro etapas</b>
+    </h2>
+
+    <p class="p-ref mt-10 max-w-[92ch] mx-auto text-offwhite/85">
+      O trabalho da Ties é conduzido em um ciclo fechado e previsível: entender o negócio,
+      produzir e relacionar-se com a imprensa, acompanhar o porta-voz e prestar contas do que foi conquistado, com valoração de cada publicação.
+    </p>
+
+    
+    <div class="mt-20 relative">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-14">
+
+        <div class="flex flex-col items-center px-4">
+          <span aria-hidden="true" class="icon fa-regular fa-compass text-offwhite text-[2.6rem] mb-6"></span>
+          <div class="w-full border-t border-offwhite/70 relative"><span class="absolute left-1/2 -translate-x-1/2 -top-[5px] w-2.5 h-2.5 rounded-full bg-offwhite"></span></div>
+          <p class="text-[1.75rem] font-light mt-6">01</p>
+          <p class="text-[1.02rem] font-semibold mt-1">Diagnóstico</p>
+          <p class="text-[.88rem] font-light leading-relaxed text-offwhite/75 mt-3 max-w-[26ch]">
+            Entendimento do negócio e do setor, definição de porta-vozes, temas e objetivos
+            do período.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center px-4">
+          <span aria-hidden="true" class="icon fa-regular fa-pen-to-square text-offwhite text-[2.6rem] mb-6"></span>
+          <div class="w-full border-t border-offwhite/70 relative"><span class="absolute left-1/2 -translate-x-1/2 -top-[5px] w-2.5 h-2.5 rounded-full bg-offwhite"></span></div>
+          <p class="text-[1.75rem] font-light mt-6">02</p>
+          <p class="text-[1.02rem] font-semibold mt-1">Produção e imprensa</p>
+          <p class="text-[.88rem] font-light leading-relaxed text-offwhite/75 mt-3 max-w-[26ch]">
+            Pautas, releases e artigos, com relacionamento direto com jornalistas e veículos
+            do setor.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center px-4">
+          <span aria-hidden="true" class="icon fa-regular fa-comments text-offwhite text-[2.6rem] mb-6"></span>
+          <div class="w-full border-t border-offwhite/70 relative"><span class="absolute left-1/2 -translate-x-1/2 -top-[5px] w-2.5 h-2.5 rounded-full bg-offwhite"></span></div>
+          <p class="text-[1.75rem] font-light mt-6">03</p>
+          <p class="text-[1.02rem] font-semibold mt-1">Acompanhamento</p>
+          <p class="text-[.88rem] font-light leading-relaxed text-offwhite/75 mt-3 max-w-[26ch]">
+            Preparo e apoio ao porta-voz antes, durante e depois de cada entrevista, com
+            ajuste de rota.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center px-4">
+          <span aria-hidden="true" class="icon fa-regular fa-file-lines text-offwhite text-[2.6rem] mb-6"></span>
+          <div class="w-full border-t border-offwhite/70 relative"><span class="absolute left-1/2 -translate-x-1/2 -top-[5px] w-2.5 h-2.5 rounded-full bg-offwhite"></span></div>
+          <p class="text-[1.75rem] font-light mt-6">04</p>
+          <p class="text-[1.02rem] font-semibold mt-1">Relatório e valoração</p>
+          <p class="text-[.88rem] font-light leading-relaxed text-offwhite/75 mt-3 max-w-[26ch]">
+            Todas as publicações conquistadas, com o valor de mercado de cada espaço
+            obtido.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="#faq" class="pill pill-light mt-20">Como medimos o resultado</a>
+  </div>
+
+  
+  <div class="h-2 bg-taupe"></div>
+</section>
+
+
+
+
+
+
+
+<section id="faq" class="bg-offwhite">
+  <div class="mx-auto max-w-ref px-6 py-24">
+    <div class="grid lg:grid-cols-[41%_1fr] gap-10 lg:gap-[54px]">
+
+      <h2 class="h-sec">
+        As dúvidas que aparecem<br> <b class="uline">antes da primeira reunião.</b>
+      </h2>
+
+      <div class="border-t border-navy/20">
+
+        <details class="border-b border-navy/20 py-6">
+          <summary class="flex items-start justify-between gap-8">
+            <span class="text-[1.2rem] font-light leading-snug">Para quem é e <b class="font-bold">para quem não é</b> esse serviço?</span>
+            <span aria-hidden="true" class="icon fa-solid fa-plus fx text-taupe text-sm mt-2 shrink-0"></span>
+          </summary>
+          <p class="p-ref mt-5 max-w-[62ch] text-navy/85">
+            É para pequenas e médias empresas, executivos e C-levels que já têm algo consistente a dizer (um negócio em operação, uma tese de mercado, um porta-voz disponível).
+            <b>Não é para quem busca resultado de venda imediato</b> nem para quem quer apenas
+            volume de publicações: espaço em imprensa não se compra, se conquista.
+          </p>
+        </details>
+
+        <details class="border-b border-navy/20 py-6">
+          <summary class="flex items-start justify-between gap-8">
+            <span class="text-[1.2rem] font-light leading-snug">Como funciona <b class="font-bold">na prática</b>?</span>
+            <span aria-hidden="true" class="icon fa-solid fa-plus fx text-taupe text-sm mt-2 shrink-0"></span>
+          </summary>
+          <p class="p-ref mt-5 max-w-[62ch] text-navy/85">
+            O trabalho começa por um <b>diagnóstico</b> do negócio e dos temas em que a empresa
+            tem autoridade. Depois vêm a produção de pautas, releases e artigos e o
+            <b>relacionamento direto com jornalistas</b>. Ao longo do período, o porta-voz é
+            preparado e acompanhado em cada entrevista. Ao fim, um relatório consolida tudo o
+            que foi publicado.
+          </p>
+        </details>
+
+        <details class="border-b border-navy/20 py-6">
+          <summary class="flex items-start justify-between gap-8">
+            <span class="text-[1.2rem] font-light leading-snug">Como sei que o <b class="font-bold">investimento valeu a pena</b>?</span>
+            <span aria-hidden="true" class="icon fa-solid fa-plus fx text-taupe text-sm mt-2 shrink-0"></span>
+          </summary>
+          <p class="p-ref mt-5 max-w-[62ch] text-navy/85">
+            Ao fim de cada período contratado, a empresa recebe um relatório com
+            <b>todas as publicações conquistadas</b> e a <b>valoração de cada uma</b>, ou seja, quanto custaria comprar aquele mesmo espaço de mídia como anúncio pago. Essa referência é analisada junto à relevância dos veículos, aos temas publicados e aos objetivos definidos para o trabalho.
+          </p>
+        </details>
+
+        <details class="border-b border-navy/20 py-6">
+          <summary class="flex items-start justify-between gap-8">
+            <span class="text-[1.2rem] font-light leading-snug">Como saber se o serviço é <b class="font-bold">para a minha empresa</b>?</span>
+            <span aria-hidden="true" class="icon fa-solid fa-plus fx text-taupe text-sm mt-2 shrink-0"></span>
+          </summary>
+          <p class="p-ref mt-5 max-w-[62ch] text-navy/85">
+            A conversa inicial existe justamente para isso. Em uma reunião é
+            possível avaliar se há matéria-prima para pauta, quem seria o porta-voz e por qual
+            frente começar. <b>Se não fizer sentido agora, isso será dito na própria reunião.</b>
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="contato" class="bg-offwhite border-t border-navy/10">
+  <div class="mx-auto max-w-ref px-6 py-24">
+    <div class="grid lg:grid-cols-[38%_1fr] gap-14 lg:gap-16">
+
+      <div>
+        <h2 class="text-[2.8rem] lg:text-[3.2rem] font-light leading-[1.1]">Vamos conversar?</h2>
+        <p class="p-ref mt-8 max-w-[38ch]">
+          Uma primeira conversa costuma bastar para saber se há trabalho a fazer.
+          <b>Sem proposta automática e sem compromisso.</b>
+        </p>
+        <a href="https://wa.me/5547988038218" class="pill pill-taupe mt-9">
+          <span aria-hidden="true" class="icon fa-brands fa-whatsapp mr-2"></span> Falar no WhatsApp
+        </a>
+        <div class="mt-9 space-y-2.5 text-[.95rem] font-light text-navy/80">
+          <p><span aria-hidden="true" class="icon fa-regular fa-envelope text-taupe w-5"></span> <a href="mailto:thiesen.fernanda@gmail.com">thiesen.fernanda@gmail.com</a></p>
+          <p><span aria-hidden="true" class="icon fa-solid fa-phone text-taupe w-5"></span> <a href="tel:+5547988038218">+55 47 98803-8218</a></p>
+          <p><span aria-hidden="true" class="icon fa-solid fa-location-dot text-taupe w-5"></span> Joinville · SC · atendimento em todo o Brasil</p>
+        </div>
+      </div>
+
+      <form id="contactForm" class="lg:pt-4">
+<div class="grid sm:grid-cols-2 gap-5">
+<div><label for="nome">Seu nome <span>(obrigatório)</span></label><input class="inp" id="nome" name="nome" autocomplete="name" maxlength="100" required></div>
+<div><label for="empresa">Empresa <span>(obrigatório)</span></label><input class="inp" id="empresa" name="empresa" autocomplete="organization" maxlength="150" required></div>
+<div class="sm:col-span-2"><label for="email">E-mail para retorno <span>(opcional)</span></label><input class="inp" id="email" name="email" type="email" autocomplete="email" maxlength="180"></div>
+<div class="sm:col-span-2"><label for="assunto">Sobre o que vamos conversar?</label><select class="inp" id="assunto" name="assunto"><option>Ainda não sei, quero uma orientação</option><option>Assessoria de imprensa</option><option>Produção de conteúdo jornalístico</option><option>Ghostwriting para C-levels</option><option>Gestão de LinkedIn executivo</option><option>Consultoria em comunicação empresarial</option><option>Consultoria em comunicação interna</option><option>Comunicação em situações sensíveis</option></select></div>
+<div class="sm:col-span-2"><label for="mensagem">Conte um pouco sobre o seu momento <span>(opcional)</span></label><textarea class="inp" id="mensagem" name="mensagem" rows="4" maxlength="1500"></textarea></div>
+</div><p class="form-explainer">Ao continuar, o WhatsApp será aberto com sua mensagem preenchida. Você confere e confirma o envio por lá.</p>
+<button type="submit" class="pill pill-solid">Continuar no WhatsApp</button>
+<p class="privacy-note">Os dados serão usados para responder ao seu contato. <a href="privacidade.html">Veja a política de privacidade.</a></p>
+<p id="formStatus" role="status" class="form-status" tabindex="-1"></p>
+<a id="messageLink" class="text-link" hidden target="_blank" rel="noopener noreferrer">Abrir mensagem no WhatsApp</a>
+<noscript><p>Para conversar, use o link de WhatsApp ao lado ou escreva para <a href="mailto:thiesen.fernanda@gmail.com">thiesen.fernanda@gmail.com</a>.</p></noscript>
+</form>
+
+    </div>
+  </div>
+</section>
+
+
+
+</main><footer class="bg-offwhite">
+  <div class="mx-auto max-w-ref px-6 py-16">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-12">
+
+      <div>
+        <div class="flex items-center gap-6">
+          <a href="#topo"><img class="brand-logo" src="assets/logo.svg" alt="Ties Comunicação" width="128" height="53"></a>
+          <span class="w-px h-9 bg-navy/20"></span>
+          <span class="text-[.72rem] track uppercase font-light text-navy/60">Jornalismo · RP<br> Comunicação empresarial</span>
+        </div>
+
+        <div class="mt-7 text-[.95rem] font-light leading-relaxed text-navy/80">
+          <p>Joinville, Santa Catarina</p>
+          <p><b class="font-semibold">+55 47 98803-8218</b> · <a href="mailto:thiesen.fernanda@gmail.com" class="text-taupe hover:text-navy transition font-medium">thiesen.fernanda@gmail.com</a></p>
+        </div>
+
+        <div class="flex gap-4 mt-6 text-navy">
+          
+          
+          <a href="https://wa.me/5547988038218" aria-label="WhatsApp" class="w-8 h-8 grid place-items-center border border-navy/25 hover:bg-navy hover:text-offwhite transition"><span aria-hidden="true" class="icon fa-brands fa-whatsapp text-sm"></span></a>
+        </div>
+
+        <nav aria-label="Navegação do rodapé" class="flex flex-wrap gap-x-12 gap-y-3 mt-10 text-[1.02rem] font-light lowercase text-navy/80">
+          <a href="#sobre" class="hover:text-taupe transition">a ties</a>
+          <a href="#servicos" class="hover:text-taupe transition">serviços</a>
+          <a href="#metodo" class="hover:text-taupe transition">como funciona</a>
+          <a href="#diferenciais" class="hover:text-taupe transition">por que a Ties</a>
+          <a href="#blog" class="hover:text-taupe transition">blog</a>
+          <a href="#faq" class="hover:text-taupe transition">faq</a>
+          <a href="#contato" class="hover:text-taupe transition">contato</a>
+        </nav>
+      </div>
+
+      <div class="lg:text-right lg:self-end space-y-3">
+        <p class="text-[1.4rem] font-light text-taupe">Damos valor ao que merece ser dito.</p>
+        <a href="privacidade.html" class="privacy-link">Política de privacidade</a>
+        <p class="text-[.82rem] font-light text-navy/55">© 2026 Ties Comunicação. Todos os direitos reservados.</p>
+        <a href="#topo" class="inline-flex items-center gap-2 text-[.72rem] track uppercase font-light text-navy/70 hover:text-navy transition pt-2">
+          <span aria-hidden="true" class="icon fa-solid fa-arrow-up"></span> Voltar ao topo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="h-6 bg-gradient-to-r from-navy via-taupe to-navy"></div>
+</footer>
+
+
+<a href="https://wa.me/5547988038218" aria-label="Falar no WhatsApp"
+   class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-navy text-offwhite grid place-items-center shadow-xl hover:bg-navydeep transition">
+  <span aria-hidden="true" class="icon fa-brands fa-whatsapp text-2xl"></span>
+</a>
+
+
+
+
+<dialog id="serviceDialog" aria-labelledby="serviceTitle"><div class="dialog-inner"><button type="button" class="dialog-close" aria-label="Fechar detalhes do serviço">×</button><p class="section-note" id="serviceName"></p><h2 id="serviceTitle"></h2><p id="serviceDescription"></p><ul id="serviceItems"></ul><a id="serviceContact" class="pill pill-solid" href="#contato">Conversar sobre este serviço</a></div></dialog><script id="servicesData" type="application/json">[["Assessoria de imprensa", "Transformar conhecimento em notícia.", "Identificamos histórias relevantes no seu negócio e construímos o relacionamento com jornalistas e veículos locais e nacionais.", ["Diagnóstico de temas e oportunidades de pauta", "Produção de releases e contato com a imprensa", "Preparo e acompanhamento de entrevistas", "Relatório das publicações conquistadas"]], ["Produção de conteúdo jornalístico", "Clareza para histórias que merecem espaço.", "Conteúdo apurado, bem escrito e adequado ao público e ao canal. Da entrevista com a fonte à versão final do texto.", ["Entrevistas e apuração de informações", "Textos para canais próprios e externos", "Linguagem alinhada ao posicionamento da empresa"]], ["Ghostwriting para C-levels", "Suas ideias, com a força de um bom texto.", "Organizamos o conhecimento e os pontos de vista de executivos em artigos de opinião que preservam sua voz e seu posicionamento.", ["Escuta e entrevistas com o executivo", "Definição de temas e linha de argumentação", "Redação e revisão de artigos com aprovação do autor"]], ["Gestão de LinkedIn executivo", "Presença com intenção e consistência.", "Construímos uma presença profissional que conecta a experiência do executivo aos assuntos sobre os quais ele tem algo relevante a dizer.", ["Definição de posicionamento e temas", "Planejamento e produção de publicações", "Acompanhamento da presença e do engajamento"]], ["Consultoria em comunicação empresarial", "Comunicação alinhada ao negócio.", "Apoiamos empresas e gestores nas decisões de comunicação, reputação e relacionamento com seus diferentes públicos.", ["Diagnóstico e planejamento de comunicação", "Orientação de mensagens e posicionamentos", "Preparo de porta-vozes para entrevistas e eventos"]], ["Consultoria em comunicação interna", "Mais clareza entre liderança e equipe.", "Organizamos mensagens, canais e fluxos para aproximar a comunicação do dia a dia dos colaboradores e dos objetivos da empresa.", ["Diagnóstico dos canais e fluxos internos", "Alinhamento entre liderança, cultura e objetivos", "Orientação para reuniões e comunicações sensíveis"]], ["Comunicação em situações sensíveis", "Cuidado com o que se diz e como se diz.", "Orientamos gestores na construção de mensagens claras e responsáveis em momentos que exigem atenção especial ao relacionamento com seus públicos.", ["Leitura do contexto e dos públicos envolvidos", "Orientação de mensagens e posicionamentos", "Apoio à comunicação de lideranças"]]]</script>
+</body></html>
